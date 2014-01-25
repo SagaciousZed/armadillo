@@ -12,8 +12,7 @@ function Awake () {
 // Update is called once per frame
 function Update () {
 	// Get the input vector from keyboard or analog stick
-	var directionVector = new Vector3(Input.GetAxis("Horizontal"), 0, 0);
-	// change so you can no longer move off the screen.
+	var directionVector = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
 	
 	if (directionVector != Vector3.zero) {
 		// Get the length of the directon vector and then normalize it
@@ -41,8 +40,7 @@ function Update () {
 	
 	// Apply the direction to the CharacterMotor
 	motor.inputMoveDirection = directionVector;
-	motor.inputJump = Input.GetButton("Jump") || Input.GetAxis("Vertical") > 0.2;
-	// change so that you can use up to jump
+	motor.inputJump = Input.GetButton("Jump");
 	
 	// Set rotation to the move direction	
 	if (autoRotate && directionVector.sqrMagnitude > 0.01) {
