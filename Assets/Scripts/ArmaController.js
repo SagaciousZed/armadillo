@@ -1,16 +1,19 @@
 ﻿#pragma strict
 public var speed : float;
 public var jump : float;
-public var isground : float;
-var charMod : Transform;
+public var isground : boolean;
+var orientationWidget : Transform;
 
 public var objectSpeed : float;
+
+private var animator : Animator;
 
 enum ArmaMode {Cube, Ball, Spike};
 var mode : ArmaMode;
 
 function Start () {
 	mode = ArmaMode.Cube;
+	animator = GetComponentInChildren(Animator);
 }
 function Update () {
 	if (Input.GetKey("1")) {
@@ -24,15 +27,31 @@ function Update () {
 	if (mode == ArmaMode.Cube){
 		GetComponent(BoxCollider).enabled = true;
 		GetComponent(SphereCollider).enabled = false;
-		charMod.GetComponent(Animator).enabled = false;
+		animator.SetBool("curled", false);
 		moveGroundTo(0);
+		transform.parent = null;
+		rigidbody.isKinematic = false;
+		
 	}
 	if (mode == ArmaMode.Ball){
 		GetComponent(BoxCollider).enabled = false;
 		GetComponent(SphereCollider).enabled = true;
-		charMod.GetComponent(Animator).enabled = true;
+		animator.SetBool("curled", true);
 		rigidbody.drag = 0.1;
 		moveGroundTo(-3);
+		transform.parent = null;
+		rigidbody.isKinematic = false;
+	}
+	
+	// quck and dirty self righting
+	if (isground && mode != ArmaMode.Ball) {
+		//var destination = Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
+//		destination.z = 0;
+	
+		transform.rotation = Quaternion.Lerp(transform.rotation, orientationWidget.rotation, Time.deltaTime * 20);
+//		var realrot : Quaternion = Quaternion(0,0,0,0);
+//		realrot.eulerAngles = Vector3(0, 0, rotationup.rotation.eulerAngles.z); 
+//		transform.rotation = Quaternion.Lerp(transform.rotation, realrot, Time.deltaTime * 20);
 	}
 
 }
@@ -49,13 +68,22 @@ function moveGroundTo(pos : float) {
 function FixedUpdate () {
 
 if (mode != ArmaMode.Ball){
-	if (isground == 1){
-		if (Input.GetAxis ("Horizontal"))
-		{rigidbody.AddForce(Vector3.right * speed * Input.GetAxis ("Horizontal"));
-
+	if (isground){
+		var hIn : float = Input.GetAxis ("Horizontal");
+		rigidbody.AddForce(Vector3.right * speed * Input.GetAxis ("Horizontal"));
+		if (hIn > 0) {
+			orientationWidget.rotation.eulerAngles = Vector3.zero;
+		} else if ( hIn < 0) {
+			orientationWidget.rotation.eulerAngles = Vector3(0, 180, 0);
 		}
+
 		if (Input.GetButton("Jump")){
 			rigidbody.AddForce(Vector3.up * jump, ForceMode.Impulse);
+		}
+	}
+	else if (!isground){
+		if (Input.GetAxis ("Horizontal")) {
+			rigidbody.AddForce(Vector3.right * speed * .1 * Input.GetAxis ("Horizontal"));
 		}
 	}
 }
@@ -64,17 +92,28 @@ if (mode != ArmaMode.Ball){
 
 function OnCollisionEnter(collision : Collision) {
 	if(collision.gameObject.tag == "ground"){
-		isground = 1;
+		isground = true;
 		if (mode != ArmaMode.Ball){
 			rigidbody.drag = 5;
 		}
 	}
-
-
+	if(collision.gameObject.tag == "sticky"){
+		
+		if (mode == ArmaMode.Spike){
+			transform.parent = collision.transform;
+			rigidbody.isKinematic = true;
+			//rigidbody.velocity = rigidbody.velocity * 0;
+			
+		}
+	}
 }
+
+
+
+
 function OnCollisionExit(collision : Collision) {
 	if(collision.gameObject.tag == "ground"){
-		isground = 0;
+		isground = false;
 		if (mode != ArmaMode.Ball){
 		rigidbody.drag = 2;
 		}
