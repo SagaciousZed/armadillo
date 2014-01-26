@@ -82,6 +82,7 @@ function moveGroundTo(pos : float) {
 }
 
 function FixedUpdate () {
+
 	var hIn : float = Input.GetAxis ("Horizontal");
 	animator.SetBool("walking", hIn != 0);
 
