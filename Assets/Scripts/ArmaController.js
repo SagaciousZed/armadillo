@@ -66,27 +66,28 @@ function moveGroundTo(pos : float) {
 }
 
 function FixedUpdate () {
+	var hIn : float = Input.GetAxis ("Horizontal");
+	animator.SetBool("walking", hIn != 0);
 
-if (mode != ArmaMode.Ball){
-	if (isground){
-		var hIn : float = Input.GetAxis ("Horizontal");
-		rigidbody.AddForce(Vector3.right * speed * Input.GetAxis ("Horizontal"));
-		if (hIn > 0) {
-			orientationWidget.rotation.eulerAngles = Vector3.zero;
-		} else if ( hIn < 0) {
-			orientationWidget.rotation.eulerAngles = Vector3(0, 180, 0);
+	if (mode != ArmaMode.Ball){
+		if (isground){
+			rigidbody.AddForce(Vector3.right * speed * Input.GetAxis ("Horizontal"));
+			if (hIn > 0) {
+				orientationWidget.rotation.eulerAngles = Vector3.zero;
+			} else if ( hIn < 0) {
+				orientationWidget.rotation.eulerAngles = Vector3(0, 180, 0);
+			}
+
+			if (Input.GetButton("Jump")){
+				rigidbody.AddForce(Vector3.up * jump, ForceMode.Impulse);
+			}
 		}
-
-		if (Input.GetButton("Jump")){
-			rigidbody.AddForce(Vector3.up * jump, ForceMode.Impulse);
+		else if (!isground){
+			if (Input.GetAxis ("Horizontal")) {
+				rigidbody.AddForce(Vector3.right * speed * .1 * Input.GetAxis ("Horizontal"));
+			}
 		}
 	}
-	else if (!isground){
-		if (Input.GetAxis ("Horizontal")) {
-			rigidbody.AddForce(Vector3.right * speed * .1 * Input.GetAxis ("Horizontal"));
-		}
-	}
-}
 
 }
 
