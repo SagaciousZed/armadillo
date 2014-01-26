@@ -1,0 +1,402 @@
+fileFormatVersion: 2
+guid: 692e4deab862543b3b198dcd4b202fc2
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: chest
+    100002: head
+    100004: L_ankle
+    100006: L_elbow
+    100008: L_foot
+    100010: L_hand
+    100012: L_hip
+    100014: L_knee
+    100016: L_shoulder
+    100018: neck
+    100020: nurbsCircle1
+    100022: pCylinder10
+    100024: pCylinder11
+    100026: pCylinder12
+    100028: pCylinder13
+    100030: pCylinder14
+    100032: pCylinder15
+    100034: pCylinder16
+    100036: pCylinder17
+    100038: pCylinder18
+    100040: pCylinder19
+    100042: pCylinder20
+    100044: pCylinder21
+    100046: pCylinder22
+    100048: pCylinder23
+    100050: pCylinder24
+    100052: pCylinder25
+    100054: pCylinder26
+    100056: pCylinder27
+    100058: pCylinder28
+    100060: pCylinder29
+    100062: pCylinder3
+    100064: pCylinder30
+    100066: pCylinder31
+    100068: pCylinder34
+    100070: pCylinder4
+    100072: pCylinder5
+    100074: pCylinder6
+    100076: pCylinder7
+    100078: pCylinder8
+    100080: pCylinder9
+    100082: polySurface5
+    100084: R_ankle
+    100086: R_elbow
+    100088: R_foot
+    100090: R_hand
+    100092: R_hip
+    100094: R_knee
+    100096: R_shoulder
+    100098: root
+    100100: spine
+    100102: tail_1
+    100104: tail_2
+    100106: tail_3
+    100108: tail_4
+    100110: //RootNode
+    400000: chest
+    400002: head
+    400004: L_ankle
+    400006: L_elbow
+    400008: L_foot
+    400010: L_hand
+    400012: L_hip
+    400014: L_knee
+    400016: L_shoulder
+    400018: neck
+    400020: nurbsCircle1
+    400022: pCylinder10
+    400024: pCylinder11
+    400026: pCylinder12
+    400028: pCylinder13
+    400030: pCylinder14
+    400032: pCylinder15
+    400034: pCylinder16
+    400036: pCylinder17
+    400038: pCylinder18
+    400040: pCylinder19
+    400042: pCylinder20
+    400044: pCylinder21
+    400046: pCylinder22
+    400048: pCylinder23
+    400050: pCylinder24
+    400052: pCylinder25
+    400054: pCylinder26
+    400056: pCylinder27
+    400058: pCylinder28
+    400060: pCylinder29
+    400062: pCylinder3
+    400064: pCylinder30
+    400066: pCylinder31
+    400068: pCylinder34
+    400070: pCylinder4
+    400072: pCylinder5
+    400074: pCylinder6
+    400076: pCylinder7
+    400078: pCylinder8
+    400080: pCylinder9
+    400082: polySurface5
+    400084: R_ankle
+    400086: R_elbow
+    400088: R_foot
+    400090: R_hand
+    400092: R_hip
+    400094: R_knee
+    400096: R_shoulder
+    400098: root
+    400100: spine
+    400102: tail_1
+    400104: tail_2
+    400106: tail_3
+    400108: tail_4
+    400110: //RootNode
+    2300000: pCylinder10
+    2300002: pCylinder11
+    2300004: pCylinder12
+    2300006: pCylinder13
+    2300008: pCylinder14
+    2300010: pCylinder15
+    2300012: pCylinder16
+    2300014: pCylinder17
+    2300016: pCylinder18
+    2300018: pCylinder19
+    2300020: pCylinder20
+    2300022: pCylinder21
+    2300024: pCylinder22
+    2300026: pCylinder23
+    2300028: pCylinder24
+    2300030: pCylinder25
+    2300032: pCylinder26
+    2300034: pCylinder27
+    2300036: pCylinder28
+    2300038: pCylinder29
+    2300040: pCylinder3
+    2300042: pCylinder30
+    2300044: pCylinder31
+    2300046: pCylinder34
+    2300048: pCylinder4
+    2300050: pCylinder5
+    2300052: pCylinder6
+    2300054: pCylinder7
+    2300056: pCylinder8
+    2300058: pCylinder9
+    3300000: pCylinder10
+    3300002: pCylinder11
+    3300004: pCylinder12
+    3300006: pCylinder13
+    3300008: pCylinder14
+    3300010: pCylinder15
+    3300012: pCylinder16
+    3300014: pCylinder17
+    3300016: pCylinder18
+    3300018: pCylinder19
+    3300020: pCylinder20
+    3300022: pCylinder21
+    3300024: pCylinder22
+    3300026: pCylinder23
+    3300028: pCylinder24
+    3300030: pCylinder25
+    3300032: pCylinder26
+    3300034: pCylinder27
+    3300036: pCylinder28
+    3300038: pCylinder29
+    3300040: pCylinder3
+    3300042: pCylinder30
+    3300044: pCylinder31
+    3300046: pCylinder34
+    3300048: pCylinder4
+    3300050: pCylinder5
+    3300052: pCylinder6
+    3300054: pCylinder7
+    3300056: pCylinder8
+    3300058: pCylinder9
+    4300000: polySurface5
+    4300002: pCylinder4
+    4300004: pCylinder5
+    4300006: pCylinder6
+    4300008: pCylinder12
+    4300010: pCylinder23
+    4300012: pCylinder26
+    4300014: pCylinder30
+    4300016: pCylinder31
+    4300018: pCylinder3
+    4300020: pCylinder7
+    4300022: pCylinder8
+    4300024: pCylinder9
+    4300026: pCylinder10
+    4300028: pCylinder11
+    4300030: pCylinder13
+    4300032: pCylinder18
+    4300034: pCylinder22
+    4300036: pCylinder25
+    4300038: pCylinder28
+    4300040: pCylinder34
+    4300042: pCylinder14
+    4300044: pCylinder15
+    4300046: pCylinder16
+    4300048: pCylinder17
+    4300050: pCylinder19
+    4300052: pCylinder20
+    4300054: pCylinder21
+    4300056: pCylinder24
+    4300058: pCylinder27
+    4300060: pCylinder29
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: polySurface5
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 70
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/root
+        weight: 1
+      - path: nurbsCircle1/root/L_hip
+        weight: 1
+      - path: nurbsCircle1/root/L_hip/L_knee
+        weight: 1
+      - path: nurbsCircle1/root/L_hip/L_knee/L_ankle
+        weight: 1
+      - path: nurbsCircle1/root/L_hip/L_knee/L_ankle/L_foot
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder14
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder15
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder16
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder17
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder19
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder20
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder21
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder24
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder27
+        weight: 1
+      - path: nurbsCircle1/root/pCylinder29
+        weight: 1
+      - path: nurbsCircle1/root/R_hip
+        weight: 1
+      - path: nurbsCircle1/root/R_hip/R_knee
+        weight: 1
+      - path: nurbsCircle1/root/R_hip/R_knee/R_ankle
+        weight: 1
+      - path: nurbsCircle1/root/R_hip/R_knee/R_ankle/R_foot
+        weight: 1
+      - path: nurbsCircle1/root/spine
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/L_shoulder
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/L_shoulder/L_elbow
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/L_shoulder/L_elbow/L_hand
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/neck
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/neck/head
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/pCylinder4
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/pCylinder5
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/pCylinder6
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/pCylinder12
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/pCylinder23
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/pCylinder26
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/pCylinder30
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/pCylinder31
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/R_shoulder
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/R_shoulder/R_elbow
+        weight: 1
+      - path: nurbsCircle1/root/spine/chest/R_shoulder/R_elbow/R_hand
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder3
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder7
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder8
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder9
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder10
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder11
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder13
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder18
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder22
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder25
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder28
+        weight: 1
+      - path: nurbsCircle1/root/spine/pCylinder34
+        weight: 1
+      - path: nurbsCircle1/root/tail_1
+        weight: 1
+      - path: nurbsCircle1/root/tail_1/tail_2
+        weight: 1
+      - path: nurbsCircle1/root/tail_1/tail_2/tail_3
+        weight: 1
+      - path: nurbsCircle1/root/tail_1/tail_2/tail_3/tail_4
+        weight: 1
+      - path: polySurface5
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

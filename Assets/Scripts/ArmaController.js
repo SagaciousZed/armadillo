@@ -10,6 +10,7 @@ var audiocamera : Transform;
 public var objectSpeed : float;
 
 private var animator : Animator;
+public var spikes : GameObject;
 
 enum ArmaMode {Cube, Ball, Spike};
 var mode : ArmaMode;
@@ -31,6 +32,7 @@ function Update () {
 		GetComponent(BoxCollider).enabled = true;
 		GetComponent(SphereCollider).enabled = false;
 		animator.SetBool("curled", false);
+		animator.SetBool("spiked", false);
 		moveGroundTo(0);
 		transform.parent = null;
 		rigidbody.isKinematic = false;
@@ -41,12 +43,21 @@ function Update () {
 		GetComponent(BoxCollider).enabled = false;
 		GetComponent(SphereCollider).enabled = true;
 		animator.SetBool("curled", true);
+		animator.SetBool("spiked", false);
 		rigidbody.drag = 0.1;
 		moveGroundTo(-10);
 		transform.parent = null;
 		rigidbody.isKinematic = false;
 	}
 
+	
+	if (mode == ArmaMode.Spike) {
+		animator.SetBool("curled", false);
+		animator.SetBool("spiked", true);
+	}
+	
+	// lets just hide the spikes when we don't need them
+	spikes.active = animator.GetBool("spiked");
 	
 	// quck and dirty self righting
 	if (isground && mode != ArmaMode.Ball) {
