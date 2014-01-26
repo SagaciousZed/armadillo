@@ -1,6 +1,6 @@
 ﻿#pragma strict
-
+var time :float;
 function Awake ()
 {
-	Destroy (gameObject , 1);
+	Destroy (gameObject , time);
 }

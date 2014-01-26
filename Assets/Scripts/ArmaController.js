@@ -1,7 +1,9 @@
 ﻿#pragma strict
+var BloodFX : Transform;
 public var speed : float;
 public var jump : float;
 public var isground : boolean;
+public var diespeed : float;
 var orientationWidget : Transform;
 var audiocamera : Transform;
 
@@ -44,6 +46,7 @@ function Update () {
 		transform.parent = null;
 		rigidbody.isKinematic = false;
 	}
+
 	
 	// quck and dirty self righting
 	if (isground && mode != ArmaMode.Ball) {
@@ -97,7 +100,16 @@ function OnCollisionEnter(collision : Collision) {
 	if(collision.gameObject.tag == "ground"){
 		isground = true;
 		if (mode != ArmaMode.Ball){
-			rigidbody.drag = 5;
+			if (mode == ArmaMode.Cube){
+				rigidbody.drag = 4;
+			}
+			else if (mode == ArmaMode.Spike){
+				rigidbody.drag = 7;
+			}
+		// Call death for smacking into things to hard
+		if (rigidbody.velocity.magnitude >= diespeed){
+				Die ();
+			}
 		}
 	}
 	if(collision.gameObject.tag == "sticky"){
@@ -123,4 +135,10 @@ function OnCollisionExit(collision : Collision) {
 	}
 
 
+}
+function Die (){
+	BloodFX.gameObject.active = true;
+	//Instantiate(BloodFX, transform.position, Quaternion.identity);
+	audio.Play ();
+	Destroy (this);
 }

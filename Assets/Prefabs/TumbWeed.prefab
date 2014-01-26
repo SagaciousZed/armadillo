@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a870bffd046424d8326aadba808a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loftup: .699999988
+  loftup: .5
   loftdwn: 0
   Rnum: 0
   FX: {fileID: 400000, guid: 59ae57a16f128de4694763ef4cf6ac06, type: 2}
