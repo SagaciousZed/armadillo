@@ -214,6 +214,8 @@ MonoBehaviour:
   loftup: .699999988
   loftdwn: 0
   Rnum: 0
+  FX: {fileID: 400000, guid: 59ae57a16f128de4694763ef4cf6ac06, type: 2}
+  Firerate: 11.8999996
 --- !u!135 &13500000
 SphereCollider:
   m_ObjectHideFlags: 1

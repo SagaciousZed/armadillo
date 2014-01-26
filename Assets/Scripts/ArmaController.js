@@ -3,6 +3,7 @@ public var speed : float;
 public var jump : float;
 public var isground : boolean;
 var orientationWidget : Transform;
+var audiocamera : Transform;
 
 public var objectSpeed : float;
 
@@ -31,6 +32,7 @@ function Update () {
 		moveGroundTo(0);
 		transform.parent = null;
 		rigidbody.isKinematic = false;
+		audiocamera.audio.volume = 0;
 		
 	}
 	if (mode == ArmaMode.Ball){
@@ -38,7 +40,7 @@ function Update () {
 		GetComponent(SphereCollider).enabled = true;
 		animator.SetBool("curled", true);
 		rigidbody.drag = 0.1;
-		moveGroundTo(-3);
+		moveGroundTo(-10);
 		transform.parent = null;
 		rigidbody.isKinematic = false;
 	}
