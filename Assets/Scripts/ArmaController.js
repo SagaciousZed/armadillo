@@ -10,6 +10,9 @@ public var isground : boolean;
 public var diespeed : float;
 var orientationWidget : Transform;
 
+private var groundEulerAngles : Vector3;
+
+var audiocamera : Transform;
 
 public var objectSpeed : float;
 
@@ -24,6 +27,7 @@ function Start () {
 	mode = ArmaMode.Cube;
 	animator = GetComponentInChildren(Animator);
 }
+
 function Update () {
 	if (Input.GetKey("1")) {
 		mode = ArmaMode.Cube;
@@ -88,24 +92,61 @@ function Update () {
 	
 	// quck and dirty self righting
 	if (isground && mode != ArmaMode.Ball) {
-		//var destination = Vector3(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, 0);
-//		destination.z = 0;
-	
+		// point towards the camera widget
 		transform.rotation = Quaternion.Lerp(transform.rotation, orientationWidget.rotation, Time.deltaTime * 20);
-//		var realrot : Quaternion = Quaternion(0,0,0,0);
-//		realrot.eulerAngles = Vector3(0, 0, rotationup.rotation.eulerAngles.z); 
-//		transform.rotation = Quaternion.Lerp(transform.rotation, realrot, Time.deltaTime * 20);
 	}
 
 }
 
-function moveGroundTo(pos : float) {
-		var objects : GameObject[] = GameObject.FindGameObjectsWithTag("movingGround");
-		for (var i = 0; i < objects.Length; i++) {
-			var o = objects[i];
-			//objects[i].transform.position.y = pos;
-			o.transform.position = Vector3.Lerp(o.transform.position, Vector3(0, pos, 0), objectSpeed * Time.deltaTime);
+private var originalPositions = Array();
+
+class MovingGround {
+
+	var ground : GameObject;
+	var originalPosition : Vector3;
+	
+	function MovingGround(ground : GameObject, originalPosition : Vector3) {
+		this.ground = ground;
+		this.originalPosition = originalPosition;
+	}
+	
+	function match(ground : GameObject) : boolean {
+		return this.ground == ground;
+	}
+
+}
+
+function find(ground : GameObject) : MovingGround {
+	for (var i = 0; i < originalPositions.length; i++) {
+		var mv : MovingGround = originalPositions[i];
+		if (mv.match(ground)) {
+			return mv;
 		}
+	}
+	return null;
+}
+
+function moveGroundTo(pos : float) {
+	var objects : GameObject[] = GameObject.FindGameObjectsWithTag("movingGround");
+	for (var i = 0; i < objects.Length; i++) {
+		var o = objects[i];
+		
+		var mvGnd : MovingGround = find(o);
+		var newPosition : Vector3;
+		if (pos == 0) {
+			// if original position
+			if (mvGnd == null) {
+				mvGnd = MovingGround(o, o.transform.position);
+				originalPositions.Add(mvGnd);
+			} else {
+				newPosition = mvGnd.originalPosition;
+			}
+		} else {
+			newPosition = mvGnd.originalPosition;
+			newPosition.y -= Mathf.Abs(o.GetComponentInChildren(Renderer).bounds.size.magnitude);
+		}
+		o.transform.position = Vector3.Lerp(o.transform.position, newPosition, objectSpeed * Time.deltaTime);
+	}
 }
 
 function FixedUpdate () {
@@ -118,10 +159,14 @@ function FixedUpdate () {
 	if (mode != ArmaMode.Ball){
 		if (isground){
 			rigidbody.AddForce(Vector3.right * speed * Input.GetAxis ("Horizontal"));
+			
+			var newZRotation = this.groundEulerAngles.z * Mathf.RoundToInt(hIn);
 			if (hIn > 0) {
-				orientationWidget.rotation.eulerAngles = Vector3.zero;
+				orientationWidget.rotation.eulerAngles = Vector3(0, 0, newZRotation);
 			} else if ( hIn < 0) {
-				orientationWidget.rotation.eulerAngles = Vector3(0, 180, 0);
+				orientationWidget.rotation.eulerAngles = Vector3(0, 180, newZRotation);
+			} else {
+				orientationWidget.rotation.eulerAngles.z = newZRotation;
 			}
 
 			if (Input.GetButton("Jump")){
@@ -145,6 +190,9 @@ function isGroundType(s : String) : boolean {
 function OnCollisionEnter(collision : Collision) {
 	if(isGroundType(collision.gameObject.tag)){
 		isground = true;
+		//get the rotation of the ground
+		groundEulerAngles = collision.gameObject.transform.rotation.eulerAngles;
+		
 		if (mode != ArmaMode.Ball){
 			if (mode == ArmaMode.Cube){
 				rigidbody.drag = 4;
@@ -169,9 +217,6 @@ function OnCollisionEnter(collision : Collision) {
 	}
 }
 
-
-
-
 function OnCollisionExit(collision : Collision) {
 	if(collision.gameObject.tag == "ground"){
 		isground = false;
@@ -182,6 +227,7 @@ function OnCollisionExit(collision : Collision) {
 
 
 }
+
 function Die (){
 	BloodFX.gameObject.active = true;
 	//Instantiate(BloodFX, transform.position, Quaternion.identity);
