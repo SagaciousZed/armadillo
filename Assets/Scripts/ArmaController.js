@@ -214,7 +214,14 @@ function OnCollisionEnter(collision : Collision) {
 			//rigidbody.velocity = rigidbody.velocity * 0;
 			
 		}
+	
 	}
+	if (mode != ArmaMode.Ball){
+	if(collision.gameObject.tag == "spike"){
+			Die ();
+			
+		}
+		}
 }
 
 function OnCollisionExit(collision : Collision) {
