@@ -1,11 +1,15 @@
 ﻿#pragma strict
+var musicSquare : Transform;
+var musicRound : Transform;
+var musicSpikes : Transform;
+var audioRoll : Transform;
 var BloodFX : Transform;
 public var speed : float;
 public var jump : float;
 public var isground : boolean;
 public var diespeed : float;
 var orientationWidget : Transform;
-var audiocamera : Transform;
+
 
 public var objectSpeed : float;
 
@@ -16,6 +20,7 @@ enum ArmaMode {Cube, Ball, Spike};
 var mode : ArmaMode;
 
 function Start () {
+
 	mode = ArmaMode.Cube;
 	animator = GetComponentInChildren(Animator);
 }
@@ -29,18 +34,23 @@ function Update () {
 	}
 	
 	if (mode == ArmaMode.Cube){
-		GetComponent(BoxCollider).enabled = true;
+		GetComponent(CapsuleCollider).enabled = true;
 		GetComponent(SphereCollider).enabled = false;
 		animator.SetBool("curled", false);
 		animator.SetBool("spiked", false);
 		moveGroundTo(0);
 		transform.parent = null;
 		rigidbody.isKinematic = false;
-		audiocamera.audio.volume = 0;
+		musicSquare.audio.volume = 1.0;
+		musicRound.audio.volume = 0.2;
+		musicSpikes.audio.volume = 0.2;
+		audioRoll.active= false;
+	
+		
 		
 	}
 	if (mode == ArmaMode.Ball){
-		GetComponent(BoxCollider).enabled = false;
+		GetComponent(CapsuleCollider).enabled = false;
 		GetComponent(SphereCollider).enabled = true;
 		animator.SetBool("curled", true);
 		animator.SetBool("spiked", false);
@@ -48,12 +58,29 @@ function Update () {
 		moveGroundTo(-10);
 		transform.parent = null;
 		rigidbody.isKinematic = false;
+		musicSquare.audio.volume = 0.20;
+		musicRound.audio.volume = 1.0;
+		musicSpikes.audio.volume = 0.2;
+		if (isground){
+			if (rigidbody.velocity.magnitude >= .2){
+			audioRoll.active= true;
+			}
+			else{
+			audioRoll.active= false;
+			}
+			}
+			
+			
 	}
 
 	
 	if (mode == ArmaMode.Spike) {
 		animator.SetBool("curled", false);
 		animator.SetBool("spiked", true);
+		musicSquare.audio.volume = 0.20;
+		musicRound.audio.volume = 0.2;
+		musicSpikes.audio.volume = 1.0;
+		audioRoll.active= false;
 	}
 	
 	// lets just hide the spikes when we don't need them
@@ -83,6 +110,8 @@ function moveGroundTo(pos : float) {
 
 function FixedUpdate () {
 
+
+
 	var hIn : float = Input.GetAxis ("Horizontal");
 	animator.SetBool("walking", hIn != 0);
 
@@ -102,14 +131,19 @@ function FixedUpdate () {
 		else if (!isground){
 			if (Input.GetAxis ("Horizontal")) {
 				rigidbody.AddForce(Vector3.right * speed * .1 * Input.GetAxis ("Horizontal"));
+				
 			}
 		}
 	}
 
 }
 
+function isGroundType(s : String) : boolean {
+	return s == "ground" || s == "movingGround";
+}
+
 function OnCollisionEnter(collision : Collision) {
-	if(collision.gameObject.tag == "ground"){
+	if(isGroundType(collision.gameObject.tag)){
 		isground = true;
 		if (mode != ArmaMode.Ball){
 			if (mode == ArmaMode.Cube){

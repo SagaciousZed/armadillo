@@ -7835,13 +7835,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92c874bc41d024245a6b4267d1303ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicSquare: {fileID: 0}
+  audioRoll: {fileID: 0}
   BloodFX: {fileID: 1590405421}
   speed: 160
   jump: 50
   isground: 0
   diespeed: 0
   orientationWidget: {fileID: 2094006462}
-  audiocamera: {fileID: 1705178026}
   objectSpeed: 3
   spikes: {fileID: 542727698}
   mode: 0
